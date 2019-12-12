@@ -1,0 +1,42 @@
+* {
+	font-family: sans-serif;
+}
+
+#center {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+#startBtn {
+	width: 150px;
+	height: 75px;
+	border: 3px solid black;
+	color: white;
+	background-color: rgb(7, 116, 211);
+	text-align: center;
+	line-height: 75px;
+	font-size: 24px;
+	border-radius: 10px;
+}
+
+#countDown {
+	font-weight: 800;
+	font-size: 128px;
+	color: black;
+}
+
+#score {
+	font-weight: 800;
+	font-size: 64px;
+	color: black;
+}
+
+.circle {
+	border-radius: 1000px;
+	position: fixed;
+	z-index: 1000;
+}
