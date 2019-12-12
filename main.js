@@ -34,6 +34,7 @@ $(document).ready(() => {
 			$('#score').show(1000);
 			$('#speed').show(1000);
 			$('#accuracy').show(1000);
+			$('.circle').show();
 			let timerInt = setInterval(() => {
 				if (timer <= 0) {
 					clearInterval(timerInt);
@@ -63,7 +64,7 @@ $(document).ready(() => {
 			}
 			g_score++;
 
-			if (g_radius > 30) {
+			if (g_radius > 40) {
 				g_radius -= 10;
 			}
 			$('#score').html(g_score);
@@ -113,7 +114,7 @@ function rgb() {
 function createCircle() {
 	$('.circle').css('width', `${g_radius}px`);
 	$('.circle').css('height', `${g_radius}px`);
-	$('.circle').css('background-color', rgb());
+	// $('.circle').css('background-color', rgb());
 
 	let x = rn(0, $('body').width() - g_radius);
 	let y = rn(0, $('body').height() - g_radius);
