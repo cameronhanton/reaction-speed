@@ -9,7 +9,7 @@ let cheater = null;
 let cheatCheckerInt = null;
 let gameStarted = false;
 let mouseClicks = 0;
-let timer = 10;
+let timer = 60;
 
 $(document).ready(() => {
 	if (localStorage.getItem('score')) {
