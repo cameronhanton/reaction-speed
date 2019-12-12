@@ -7,6 +7,9 @@ let times = [];
 let idle = 0;
 let cheater = null;
 let cheatCheckerInt = null;
+let gameStarted = false;
+let mouseClicks = 0;
+let misses = 0;
 
 $(document).ready(() => {
 	if (localStorage.getItem('score')) {
@@ -43,9 +46,11 @@ $(document).ready(() => {
 	$('#startBtn').click(function() {
 		$(this).hide();
 		countDown().then(() => {
+			gameStarted = true;
 			createCircle();
 			$('#score').show(1000);
 			$('#speed').show(1000);
+			$('#accuracy').show(1000);
 		});
 	});
 
@@ -62,6 +67,7 @@ $(document).ready(() => {
 				times.push(finish - start);
 			}
 			g_score++;
+
 			if (g_radius > 30) {
 				g_radius -= 5;
 			}
@@ -71,6 +77,13 @@ $(document).ready(() => {
 				$('#speed').html(avg() + 's');
 			}
 			createCircle();
+		}
+	});
+
+	$(this).mousedown(function() {
+		if (gameStarted) {
+			mouseClicks++;
+			$('#accuracy').html(`${(((g_score + 1) / mouseClicks) * 100).toFixed(0)}%`);
 		}
 	});
 });
