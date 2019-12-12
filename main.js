@@ -10,21 +10,22 @@ let cheatCheckerInt = null;
 let gameStarted = false;
 let mouseClicks = 0;
 let timer = 60;
+let accuracy = 0;
 
 $(document).ready(() => {
 	if (localStorage.getItem('score')) {
-		$('#topScore').show();
-		$('#topScore').html(`Top Score: ${localStorage.getItem('score')}`);
-	}
-
-	if (localStorage.getItem('speed')) {
-		$('#topSpeed').show();
-		$('#topSpeed').html(`Reaction Avg: ${localStorage.getItem('speed')}`);
+		$('#topScore').html(`Score: ${localStorage.getItem('score')}`);
+		$('#topSpeed').html(`Avg Speed: ${localStorage.getItem('speed')}`);
+		$('#topAccuracy').html(`Accuracy: ${localStorage.getItem('accuracy')}`);
 	}
 
 	cheatCheckerInt = setInterval(() => {
 		cheatCheck();
 	}, 300);
+
+	$('#resetBtn').click(function() {
+		resetGame();
+	});
 
 	$('#startBtn').click(function() {
 		$(this).hide();
@@ -78,7 +79,8 @@ $(document).ready(() => {
 	$(this).mousedown(function() {
 		if (gameStarted) {
 			mouseClicks++;
-			$('#accuracy').html(`${(((g_score + 1) / mouseClicks) * 100).toFixed(0)}%`);
+			accuracy = (((g_score + 1) / mouseClicks) * 100).toFixed(0);
+			$('#accuracy').html(`${accuracy}%`);
 		}
 	});
 });
@@ -140,16 +142,6 @@ function avg() {
 }
 
 function resetGame() {
-	let oldScore = localStorage.getItem('score');
-	let oldSpeed = localStorage.getItem('speed');
-
-	if (oldScore == null || oldScore < g_score) {
-		localStorage.setItem('score', g_score);
-	}
-
-	if (oldSpeed == null || oldSpeed > avg()) {
-		localStorage.setItem('speed', avg() + 's');
-	}
 	location.reload();
 }
 
@@ -164,6 +156,13 @@ function cheatCheck() {
 
 function endGame() {
 	gameStarted = false;
+	let oldScore = localStorage.getItem('score');
+
+	if (oldScore == null || oldScore < g_score) {
+		localStorage.setItem('score', g_score);
+		localStorage.setItem('speed', avg() + 's');
+		localStorage.setItem('accuracy', accuracy + '%');
+	}
 	$('#score').hide();
 	$('#speed').hide();
 	$('#accuracy').hide();
