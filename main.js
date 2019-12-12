@@ -20,7 +20,7 @@ $(document).ready(() => {
 
 	cheatCheckerInt = setInterval(() => {
 		cheatCheck();
-	}, 100);
+	}, 300);
 
 	$('#resetBtn').click(function() {
 		resetGame();
@@ -147,13 +147,17 @@ function resetGame() {
 function cheatCheck() {
 	let displayScore = $('#score').html();
 	if (displayScore != g_score) {
+		console.log('cheater');
 		resetGame();
 	}
 
-	let scoreboard = $('#sb-score').html();
-	scoreboard = scoreboard.slice(7);
-	if (scoreboard != g_score) {
-		resetGame();
+	if (!gameStarted) {
+		let scoreboard = $('#sb-score').html();
+		scoreboard = scoreboard.slice(7);
+		if (scoreboard != g_score) {
+			console.log('cheater');
+			resetGame();
+		}
 	}
 }
 
@@ -169,6 +173,7 @@ function endGame() {
 	$('#score').hide();
 	$('#speed').hide();
 	$('#accuracy').hide();
+	$('.circle').hide();
 	$('#sb-score').html(`Score: ` + $('#score').html());
 	$('#sb-speed').html(`Speed: ` + $('#speed').html());
 	$('#sb-accuracy').html(`Accuracy: ` + $('#accuracy').html());
