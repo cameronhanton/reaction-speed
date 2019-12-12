@@ -5,11 +5,10 @@ let finish = null;
 let flipflop = true;
 let times = [];
 let idle = 0;
-let cheater = null;
 let cheatCheckerInt = null;
 let gameStarted = false;
 let mouseClicks = 0;
-let timer = 60;
+let timer = 1;
 let accuracy = 0;
 
 $(document).ready(() => {
@@ -21,7 +20,7 @@ $(document).ready(() => {
 
 	cheatCheckerInt = setInterval(() => {
 		cheatCheck();
-	}, 300);
+	}, 100);
 
 	$('#resetBtn').click(function() {
 		resetGame();
@@ -51,7 +50,7 @@ $(document).ready(() => {
 	});
 
 	$('.circle').click(function() {
-		if (cheater == null && gameStarted == true) {
+		if (gameStarted == true) {
 			if (flipflop) {
 				start = Date.now();
 				flipflop = false;
@@ -148,9 +147,13 @@ function resetGame() {
 function cheatCheck() {
 	let displayScore = $('#score').html();
 	if (displayScore != g_score) {
-		$('#score').html('CHEATER');
-		cheater = true;
-		clearInterval(cheatCheckerInt);
+		resetGame();
+	}
+
+	let scoreboard = $('#sb-score').html();
+	scoreboard = scoreboard.slice(7);
+	if (scoreboard != g_score) {
+		resetGame();
 	}
 }
 
