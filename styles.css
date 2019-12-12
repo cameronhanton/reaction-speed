@@ -52,7 +52,7 @@
 #score-board {
 	height: fit-content;
 	width: 250px;
-	background-color: rgb(76, 78, 245);
+	background-color: #b44335;
 	font-size: 24px;
 	z-index: 10000;
 	border-radius: 14px;
@@ -148,4 +148,19 @@ button {
 	60% {
 		color: #fff;
 	}
+}
+
+#top-container {
+	background-color: #e38800;
+	width: fit-content;
+	height: auto;
+	padding: 10px;
+	border-radius: 10px;
+	color: white;
+}
+
+#hs-title {
+	text-align: center;
+	text-decoration: underline;
+	margin-bottom: 4px;
 }
