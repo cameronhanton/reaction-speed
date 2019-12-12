@@ -114,7 +114,7 @@ function rgb() {
 function createCircle() {
 	$('.circle').css('width', `${g_radius}px`);
 	$('.circle').css('height', `${g_radius}px`);
-	// $('.circle').css('background-color', rgb());
+	$('.circle').css('background-color', rgb());
 
 	let x = rn(0, $('body').width() - g_radius);
 	let y = rn(0, $('body').height() - g_radius);
