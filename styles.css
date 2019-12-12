@@ -40,3 +40,26 @@
 	position: fixed;
 	z-index: 1000;
 }
+
+#timer {
+	font-size: 36px;
+	position: fixed;
+	top: 0;
+	right: 20px;
+}
+
+#score-board {
+	height: fit-content;
+	width: 250px;
+	background-color: rgb(76, 78, 245);
+	font-size: 24px;
+	z-index: 10000;
+	border-radius: 14px;
+	text-align: center;
+	padding: 14px;
+}
+
+.sb-stats {
+	font-size: inherit;
+	color: white;
+}

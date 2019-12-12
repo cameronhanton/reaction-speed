@@ -9,7 +9,7 @@ let cheater = null;
 let cheatCheckerInt = null;
 let gameStarted = false;
 let mouseClicks = 0;
-let misses = 0;
+let timer = 10;
 
 $(document).ready(() => {
 	if (localStorage.getItem('score')) {
@@ -22,26 +22,9 @@ $(document).ready(() => {
 		$('#topSpeed').html(`Reaction Avg: ${localStorage.getItem('speed')}`);
 	}
 
-	setInterval(() => {
-		idle++;
-		if (idle > 10) {
-			if (cheater == null) {
-				finishGame();
-			}
-		}
-	}, 1000);
-
 	cheatCheckerInt = setInterval(() => {
 		cheatCheck();
 	}, 300);
-
-	$(this).mousemove(function() {
-		idle = 0;
-	});
-
-	$(this).keypress(function() {
-		idle = 0;
-	});
 
 	$('#startBtn').click(function() {
 		$(this).hide();
@@ -51,11 +34,23 @@ $(document).ready(() => {
 			$('#score').show(1000);
 			$('#speed').show(1000);
 			$('#accuracy').show(1000);
+			let timerInt = setInterval(() => {
+				if (timer <= 0) {
+					clearInterval(timerInt);
+					endGame();
+				}
+				timer--;
+				let minutes = parseInt(timer / 60, 10);
+				let seconds = parseInt(timer % 60, 10);
+				minutes = minutes < 10 ? '0' + minutes : minutes;
+				seconds = seconds < 10 ? '0' + seconds : seconds;
+				$('#timer').html(minutes + ':' + seconds);
+			}, 1000);
 		});
 	});
 
 	$('.circle').click(function() {
-		if (cheater == null) {
+		if (cheater == null && gameStarted == true) {
 			if (flipflop) {
 				start = Date.now();
 				flipflop = false;
@@ -69,7 +64,7 @@ $(document).ready(() => {
 			g_score++;
 
 			if (g_radius > 30) {
-				g_radius -= 5;
+				g_radius -= 10;
 			}
 			$('#score').html(g_score);
 			let average = avg();
@@ -93,12 +88,12 @@ function countDown() {
 		let time = 3;
 		$('#countDown').html(time);
 		$('#countDown').show(500);
-		let timer = setInterval(() => {
+		let count = setInterval(() => {
 			time--;
 			$('#countDown').html(time);
 			if (time == 0) {
 				$('#countDown').html('Go!');
-				clearInterval(timer);
+				clearInterval(count);
 				$('#countDown').hide(1500);
 				resolve();
 			}
@@ -128,12 +123,8 @@ function createCircle() {
 	let pct = rn(0, 100);
 	if (pct <= 5) {
 		$('body').css('background-color', 'black');
-		$('#score').css('color', 'white');
-		$('#speed').css('color', 'white');
 	} else {
 		$('body').css('background-color', 'white');
-		$('#score').css('color', 'black');
-		$('#speed').css('color', 'black');
 	}
 }
 
@@ -148,7 +139,7 @@ function avg() {
 	return 0;
 }
 
-function finishGame() {
+function resetGame() {
 	let oldScore = localStorage.getItem('score');
 	let oldSpeed = localStorage.getItem('speed');
 
@@ -169,4 +160,15 @@ function cheatCheck() {
 		cheater = true;
 		clearInterval(cheatCheckerInt);
 	}
+}
+
+function endGame() {
+	gameStarted = false;
+	$('#score').hide();
+	$('#speed').hide();
+	$('#accuracy').hide();
+	$('#sb-score').html(`Score: ` + $('#score').html());
+	$('#sb-speed').html(`Speed: ` + $('#speed').html());
+	$('#sb-accuracy').html(`Accuracy: ` + $('#accuracy').html());
+	$('#score-board').show(1000);
 }
