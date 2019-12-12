@@ -8,7 +8,7 @@ let idle = 0;
 let cheatCheckerInt = null;
 let gameStarted = false;
 let mouseClicks = 0;
-let timer = 1;
+let timer = 60;
 let accuracy = 0;
 
 $(document).ready(() => {
