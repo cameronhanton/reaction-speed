@@ -31,9 +31,11 @@ $(document).ready(() => {
 		countDown().then(() => {
 			gameStarted = true;
 			createCircle();
-			$('#score').show(1000);
-			$('#speed').show(1000);
-			$('#accuracy').show(1000);
+			setTimeout(() => {
+				$('#score').show(2000);
+				$('#speed').show(2000);
+				$('#accuracy').show(2000);
+			}, 1000);
 			$('.circle').show();
 			let timerInt = setInterval(() => {
 				if (timer <= 0) {
@@ -96,7 +98,9 @@ function countDown() {
 			if (time == 0) {
 				$('#countDown').html('Go!');
 				clearInterval(count);
-				$('#countDown').hide(1500);
+				setTimeout(() => {
+					$('#countDown').hide(500);
+				}, 1500);
 				resolve();
 			}
 		}, 1000);
