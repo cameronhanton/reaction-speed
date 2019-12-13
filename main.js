@@ -38,16 +38,16 @@ $(document).ready(() => {
 			}, 1000);
 			$('.circle').show();
 			let timerInt = setInterval(() => {
-				if (timer <= 0) {
-					clearInterval(timerInt);
-					endGame();
-				}
 				timer--;
 				let minutes = parseInt(timer / 60, 10);
 				let seconds = parseInt(timer % 60, 10);
 				minutes = minutes < 10 ? '0' + minutes : minutes;
 				seconds = seconds < 10 ? '0' + seconds : seconds;
 				$('#timer').html(minutes + ':' + seconds);
+				if (timer <= 0) {
+					clearInterval(timerInt);
+					endGame();
+				}
 			}, 1000);
 		});
 	});
