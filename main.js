@@ -28,8 +28,10 @@ $(document).ready(() => {
 	if (mode === null) {
 		if ($('#creep-mode').prop('checked') === true) {
 			localStorage.setItem('mode', 'creep');
+			mode = 'creep';
 		} else {
 			localStorage.setItem('mode', 'regular');
+			mode = 'regular';
 		}
 	}
 
