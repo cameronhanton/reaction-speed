@@ -25,8 +25,18 @@ $(document).ready(() => {
 
 	mode = localStorage.getItem('mode');
 
+	if (mode === null) {
+		if ($('#creep-mode').prop('checked') === true) {
+			localStorage.setItem('mode', 'creep');
+		} else {
+			localStorage.setItem('mode', 'regular');
+		}
+	}
+
 	if (mode == 'creep') {
 		$('#creep-mode').prop('checked', true);
+	} else {
+		$('#creep-mode').prop('checked', false);
 	}
 
 	// cheatCheckerInt = setInterval(() => {
