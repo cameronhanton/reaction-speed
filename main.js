@@ -83,9 +83,14 @@ $(document).ready(() => {
 
 						let creepID = this.id.slice(6);
 						respawnCreep(creepID);
+
+						if (g_score % 5 == 0) {
+							if (creepDamage <= 15) {
+								creepDamage += 3;
+							}
+						}
 					}
 				});
-				let damageFlag = true;
 				let creepDamageInt = setInterval(() => {
 					for (let i = 1; i <= numOfCreeps; i++) {
 						let hp = $(`#creep-${i}-hp > span`).width();
@@ -95,15 +100,6 @@ $(document).ready(() => {
 						if (hp <= 0) {
 							respawnCreep(i);
 							g_score--;
-						}
-						if (g_score % 5 == 0 && damageFlag) {
-							damageFlag = false;
-							if (creepDamage <= 15) {
-								creepDamage += 3;
-								setTimeout(() => {
-									damageFlag = true;
-								}, 1000);
-							}
 						}
 					}
 				}, 500);
