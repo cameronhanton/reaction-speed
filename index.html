@@ -14,13 +14,21 @@
 			<div id="topSpeed">Speed: 0</div>
 			<div id="topAccuracy">Accuracy: 0</div>
 		</div>
-		<div class="circle" style="display: none;"></div>
+		<i class="fas fa-cog" id="setting-modal-open"></i>
+		<div id="setting-modal" style="display: none;">
+			<h3>Settings</h3>
+			<div class="setting-opt">
+				<input type="checkbox" name="creep-mode" id="creep-mode" checked />
+				<label for="creep-mode">Creep Mode</label>
+			</div>
+		</div>
+		<div class="circle"></div>
 		<div id="center">
 			<div id="startBtn">Start</div>
 			<div id="countDown" style="display: none;"></div>
 			<div id="score" style="display: none;">0</div>
-			<div id="speed" style="display: none;"></div>
-			<div id="accuracy" style="display: none;"></div>
+			<div id="speed" style="display: none;">0</div>
+			<div id="accuracy" style="display: none;">0</div>
 			<div id="score-board" style="display: none;">
 				<div id="sb-score" class="sb-stats">Score: 0</div>
 				<div id="sb-speed" class="sb-stats"></div>
@@ -38,8 +46,9 @@
 				</div>
 			</div>
 		</div>
-		<div id="timer">01:00</div>
+		<div id="timer">30</div>
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="https://kit.fontawesome.com/6bd1c09410.js"></script>
 		<script src="./main.js"></script>
 	</body>
 </html>

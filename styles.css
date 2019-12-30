@@ -43,6 +43,34 @@
 	z-index: 1000;
 }
 
+.creep {
+	border-radius: 1000px;
+	position: fixed;
+	z-index: 1000;
+	width: 40px;
+	height: 40px;
+	background-color: #2277aa;
+}
+
+.creep-hp-bar {
+	width: 100%;
+	height: 7px;
+	position: relative;
+	top: -10px;
+	background-color: #1b1e21;
+	border-radius: 25px;
+	padding: 1px;
+}
+
+.creep-hp-bar > span {
+	display: block;
+	height: 100%;
+	border-radius: 25px;
+	position: relative;
+	overflow: hidden;
+	background-color: #b44335;
+}
+
 #timer {
 	font-size: 36px;
 	position: fixed;
@@ -153,15 +181,82 @@ button {
 
 #top-container {
 	background-color: #e38800;
-	width: fit-content;
+	width: 150px;
 	height: auto;
 	padding: 10px;
 	border-radius: 10px;
 	color: white;
+	display: inline-block;
 }
 
 #hs-title {
 	text-align: center;
 	text-decoration: underline;
 	margin-bottom: 4px;
+}
+
+#setting-modal-open {
+	font-size: 30px;
+	position: fixed;
+	top: 9;
+	margin: 0 5px;
+	cursor: pointer;
+}
+
+#setting-modal {
+	width: 200px;
+	height: fit-content;
+	padding: 5px 20px 10px;
+	border-radius: 10px;
+	position: fixed;
+	top: 18px;
+	left: 195px;
+	border: 3px solid black;
+	background-color: white;
+}
+
+#setting-modal h3 {
+	text-align: center;
+	margin: 0;
+}
+
+.setting-opt {
+	margin: 5px 0;
+}
+
+input[type='checkbox'] + label {
+	display: block;
+	margin: 0.2em;
+	cursor: pointer;
+	padding: 0.2em;
+	line-height: 1.4em;
+}
+
+input[type='checkbox'] {
+	display: none;
+}
+
+input[type='checkbox'] + label:before {
+	content: '\2714';
+	border: 0.1em solid #000;
+	border-radius: 0.2em;
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	padding-left: 0.2em;
+	padding-bottom: 0.3em;
+	margin-right: 0.5em;
+	vertical-align: bottom;
+	color: transparent;
+	transition: 0.2s;
+}
+
+input[type='checkbox'] + label:active:before {
+	transform: scale(0);
+}
+
+input[type='checkbox']:checked + label:before {
+	background-color: #b44335;
+	border-color: #b44335;
+	color: #fff;
 }
